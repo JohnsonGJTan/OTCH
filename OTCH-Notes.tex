@@ -1,0 +1,126 @@
+\documentclass[letterpaper]{article}
+\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{color}
+
+\input{newcommands.tex}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{ex}{Example}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{Q}{Question}
+
+\theoremstyle{plain}
+\newtheorem{prop}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{cor}{Corollary}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\begin{document}
+
+\title{Notes - On Topological Cyclic Homology}
+\author{Johnson Tan}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section{Equivariant Stable Homotopy Theory}
+
+
+\begin{definition}
+The $\infty$-category of genuine $G$-spectra is $G\Sp := \Fun^\oplus(\Aeff(\finset_G),\Sp)$
+\end{definition}
+
+\begin{remark}
+In [NS] they define equivalences of $G$-spectra using geometrix fixed points. This is equivalent to equivalences detected by genuine fixed points.
+\end{remark}
+
+We now construct the geometrix fixed point functors following the appendix in Denis's thesis appendix. Let $\calF$ be a family of subgroups closed under conjugation and subgroups. Then define
+
+\[
+(E\calF)^K
+\begin{cases}
+		* & k\in\calF\\
+		\varnothing & k\not\in\calF
+\end{cases}
+\in G\Spc.
+\]
+
+\begin{ex}
+		Fix a subgroup $H\subseteq G$, then define $\calF_H$ to be the collection of subgroups which do not contain a conjugate of $H$ as a subgroup.
+\end{ex}
+
+\begin{remark}
+		We could alternatively describe such a collection of subgroups as a sieve in $\Orb_G$. In particular, the above example can be described as the maximal sieve not containing $G/H$.
+\end{remark}
+
+We will also be interested in the unreduced suspension of $E\calF$. That is
+$$E\calF_*\rightarrow S^0\rightarrow \widetilde{E\calF},$$
+in particular
+\[
+(\widetilde{E\calF})^K =
+\begin{cases}
+		*	&	K\in\calF\\
+		S^0	&	K\not\in\calF.
+\end{cases}
+\]
+
+In the case $\calF$ consists of only the trivial subgroup, then $E\calF = EG$ and $\widetilde{E\calF}=\widetilde{EG}$. 
+
+\begin{lemma}
+		Let $E\in G\Spc$, then $(E\wedge\Sigma^\infty\widetilde{E\calF})^K \simeq 0$ if $K\in\calF$ and $E^K\rightarrow(E\wedge\Sigma^\infty\widetilde{E\calF})^K$ is an equivalence if $K\not\in\calF$.  
+\end{lemma}
+
+\begin{remark}
+		The equivalences in the lemma above are induced by the map $S^0\rightarrow\widetilde{E\calF}$ from the cofiber sequence.
+\end{remark}
+
+\begin{theorem}
+		There is a smashing localization such that the local objects are $G$-spectra concentrated away from $\calF$, i.e. $E\rightarrow E\wedge\Sigma^\infty\widetilde{E\calF}$ is an equivalence.
+\end{theorem}
+
+\begin{remark}
+		This is immediate from the lemma and that $\widetilde{E\calF}$ is idempotent from looking at the fixed points.
+\end{remark}
+
+Let $\finset_{\calF^c}\subseteq\finset_G$ denote the full subcategory of those fintie $G$-sets whose stabilizers are not in $\calF$.
+
+\begin{theorem}
+		The category of $G$-spectra concentrated away from $\calF$ is equivalent to $\Fun^\oplus(\Aeff(\finset_{\calF^c}),\Sp)$ and the inclusion of the precomposition with the map $\Psi\colon\Aeff(\finset_G)\rightarrow\Aeff(\finset_{\calF^c})$ that sends every $I\in\finset_G$ to the subset of points with stabilizers in $\calF$.
+\end{theorem}
+
+\begin{remark}
+		Fix $H\leq G$ and consider $\calF$ as in the previous example. Observe that $K\not\in\calF$ if and only if there is a map of $G$-sets $G/H\rightarrow G/K$. In the case that $H$ is a normal subgroup of $G$, then $\finset_{\calF^c}$ is the category of finite $(G/H)-sets$. Indeed $\finset_{\calF^c}$ would be all finite $G$-sets whose stabilizers are subgroups of $H$.
+\end{remark}
+
+In particular, the localization functor is given by left Kan extension along $\Psi$, i.e.
+$$\Psi_!\colon G\Sp\rightarrow\Fun^\oplus(\Aeff(\finset_{\calF^c}),\Sp).$$
+We call $\Phi_!$ the geometric $H$-fixed point functor and denote it by $\Phi^H$ or $(-)^{\Phi H}$. In the case $H$ is normal, then this functor takes values in $(G/H)$-spectra.
+
+\begin{remark}
+		The geometric $H$-fixed point functors are symmetric monoidal.
+\end{remark}
+
+\begin{definition}
+		The homotopy fixed point functors are given by forgetting to $\Sp^{BG}$ then taking the usual homotopy $H$-fixed points.
+\end{definition}
+
+\begin{theorem}
+		The functor $G\Sp\rightarrow\Sp^{BG}$ admits a fully faithful right adjoint $B_G\colon\Sp^{BG}\rightarrow G\Sp$. The essential image of $B_G$ are those $X\in G\Sp$ such that the natural map $X^H\rightarrow X^{hH}$ is an equivalence for all $H\subseteq G$.
+\end{theorem}
+
+\end{document}
