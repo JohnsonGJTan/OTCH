@@ -1,2 +1,12 @@
 \babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {1}Equivariant Stable Homotopy Theory}{1}{}%
+\contentsline {section}{\numberline {1}Cyclotomic Spectra}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Cyclotomic spectra and TC}{1}{}%
+\contentsline {section}{\numberline {2}Topological Hochschild Homology}{2}{}%
+\contentsline {subsection}{\numberline {2.1}The Tate Diagonal}{2}{}%
+\contentsline {section}{\numberline {A}Equivariant Stable Homotopy Theory}{2}{}%
+\contentsline {subsection}{\numberline {A.1}Genuine $G$-Spectra}{3}{}%
+\contentsline {subsection}{\numberline {A.2}Restriction, Induction, and the Wirthm\"uller Isomorphism}{3}{}%
+\contentsline {subsection}{\numberline {A.3}Homotopy Fixed Points}{4}{}%
+\contentsline {subsection}{\numberline {A.4}Geometric Fixed Points}{4}{}%
+\contentsline {subsection}{\numberline {A.5}Comparison of Fixed Points}{5}{}%
+\contentsline {subsection}{\numberline {A.6}$G = C_{p^\infty }$ or $\mathbb {T}$}{5}{}%

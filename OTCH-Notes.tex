@@ -9,6 +9,9 @@
 \usepackage{mathtools}
 \usepackage{tikz-cd}
 \usepackage{color}
+\usepackage{outlines}
+
+\synctex=1
 
 \input{newcommands.tex}
 
@@ -16,6 +19,7 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{ex}{Example}
 \newtheorem{lemma}{Lemma}
+\newtheorem*{goal}{Goal}
 
 \theoremstyle{remark}
 \newtheorem{remark}{Remark}
@@ -38,18 +42,206 @@
 
 \tableofcontents
 
-\section{Equivariant Stable Homotopy Theory}
+\section{Cyclotomic Spectra}
 
+\subsection{Cyclotomic spectra and TC}
 
 \begin{definition}
-The $\infty$-category of genuine $G$-spectra is $G\Sp := \Fun^\oplus(\Aeff(\finset_G),\Sp)$
+		A cyclotomic spectrum is a spectrum $X$ with a $\bbT$-action together with $\bbT$-equivariant maps $\varphi_p\colon X\rightarrow X^{tC_p}$. For $p$ a fixed prime, a $p$-cyclotomic spectrum is a spectrum $X$ with a $C_{p^\infty}$-action and a $C_{p^\infty}$-equivariant map $\varphi_p\colon X\rightarrow X^{tC_p}$.
 \end{definition}
 
 \begin{remark}
-In [NS] they define equivalences of $G$-spectra using geometrix fixed points. This is equivalent to equivalences detected by genuine fixed points.
+		Here we are using the identification $\bbT\simeq\bbT/C_p$ (resp. $C_{p^\infty}\simeq C_{p^\infty}/C_p$) via the map $x\mapsto[x^{1/p}]$ to identify the residual $\bbT/C_p$-action (resp. $C_{p^\infty}/C_p$-action) of $X^{tC_p}$.
 \end{remark}
 
-We now construct the geometrix fixed point functors following the appendix in Denis's thesis appendix. Let $\calF$ be a family of subgroups closed under conjugation and subgroups. Then define
+\begin{ex}
+		Let $S^0\in\Sp^{B\bbT}$ with trivial $\bbT$-action and $f\colon B\bbT\rightarrow B(\bbT/C_p)$. Then we the following composition of maps
+$$S^0\rightarrow f_*f^*(S^0)\rightarrow(f^*(S^0))^{tC_p}$$
+		in $\Sp^{B(\bbT/C_p)}\simeq\Sp^{B\bbT}$. It will later be shown that as a cyclotomic spectra, $S^0\simeq\THH(S^0)$.
+\end{ex}
+
+\begin{remark}
+		In the notes they worried about the equivariant equivalence of the map a little more. Not quite sure why they do this...
+\end{remark}
+
+\begin{definition}
+		The $\infty$-category of cyclotomic spectra, denoted $\CycSp$, is defined as the lax equalizer
+		$$\CycSp := \LEq((\id)_p,((-)^{tC_p})_p\colon\Sp^{B\bbT}\rightrightarrows\prod_p\Sp^{B\bbT}).$$
+		Similarly for a fixed prime $p$ the $\infty$-category of $p$-cyclotomic spectra, denoted $\CycSp_p$, is defined as the lax equalizer
+		$$\CycSp_p := \LEq(\id,(-)^{tC_p}\colon\Sp^{BC_{p^\infty}}\rightrightarrows\Sp^{BC_{p^\infty}}).$$
+\end{definition}
+
+Both $\CycSp$ and $\CycSp_p$ are presentable stable $\infty$-categories. The forgetful functors $\CycSp\rightarrow\Sp$ and $\CycSp_p\rightarrow\Sp$ reflect equivalences, are exact, and preserve all small colimits.
+
+\begin{definition}
+		Let $(X,(\varphi_p)_p)\in\CycSp$ (resp. $(X,\varphi_p)\in\CycSp_p$) be a cyclotomic (resp. $p$-cyclotomic) spectrum. The integral (resp. $p$-typical) topological cyclic homology, denoted $\TC(X)$ (resp. $\TC(X,p)$) is the mapping spectrum 
+		$$\MapSp_\CycSp(S^0,X)(resp. \MapSp_{\CycSp_p}(S^0,X)).$$
+		Let $R\in\Alg_{\bbE_1}(\Sp)$, then $\TC(R):=\TC(\THH(R))$ and $\TC(R,p):=\TC(\THH(R),p)$.
+\end{definition}
+
+\begin{remark}
+		It will be shown later that $\THH(R)$ has a canonical structure of a cyclotomic spectrum.
+\end{remark}
+
+\begin{prop}
+		Let $(X,(\varphi_p)_p)$. There is a functorial fiber sequence
+		$$\TC(X)\rightarrow X^{h\bbT}\xrightarrow{(\varphi_p^{h\bbT}-\textnormal{can})_p}\prod_p(X^{tC_p})^{h\bbT}$$
+		where $\textnormal{can}\colon X^{h\bbT}\simeq(X^{hC_p})^{h(\bbT/C_p)}\simeq(X^{hC_p})^{h\bbT}\rightarrow(X^{tC_p})^{h\bbT}$.
+\end{prop}
+
+\section{Topological Hochschild Homology}
+
+\subsection{The Tate Diagonal}
+
+\begin{goal}
+		Produce a substitute for the diagonal map of spaces in the category of spectra.
+\end{goal}
+
+\begin{prop}
+		Let $p$ be a prime. The functor $T_p\colon\Sp\rightarrow\Sp$ given by $X\mapsto(X^{\otimes p})^{tC_p}$ is exact, where $X^{\otimes p}$ denotes the $p$-fold self tensor product with the $C_p$-action given by the cyclic permutation of the factors.
+\end{prop}
+
+\begin{proof}
+		
+\end{proof}
+
+Recall that there is an equivalence $\Fun^\Ex(\Sp,\Sp)\simeq\Fun^\lex(\Sp,\Spc)$ given by composing with $\Sigma^\infty$. Since $\id_\Sp$ corresponds to $\Omega^\infty$ under this correspondence, by the Yoneda lemma, we have an equivalence between the space of natural transformations $\Map_{\Fun^\Ex(\Sp,\Sp)}(\id_\Sp,F)$ and the mapping space $\Map_\Sp(S^0,F(S^0))$.
+
+\begin{definition}
+		The Tate diagonal is the natural transformation
+		$$\Delta_p\colon\id_\Sp\rightarrow T_p\colon X\rightarrow(X^{\otimes p})^{tC_p}$$
+		corresponding to the map $S^0\rightarrow(S^0)^{tC_p}$ associated to the free cyclotomic structure of $S^0$.
+\end{definition}
+
+\begin{theorem}
+		Let $X\in\Sp$ be bounded below. Then the map $\Delta_p$ exhibits $(X^{\otimes p})^{tC_p}$ as the $p$-completion of $X$.
+\end{theorem}
+
+\begin{remark}
+		Note that the existence of $\Delta_p$ uses the universal characterization of $\Sp$ as the stabilization of $\Spc$. In particular there is no lax symmetric monoidal transformation $C\rightarrow(C^{\otimes p})^{tC_p}$ as functors $\calD(\bbZ)\rightarrow\calD(\bbZ)$.
+\end{remark}
+
+\appendix
+
+\section{Equivariant Stable Homotopy Theory}
+
+\begin{goal}
+		Reproduce as much of the required theory regarding spectra with $G$-action and genuine $G$-spectra with spectral mackey functors. In particular:
+		\begin{itemize}
+				\item All the different kinds of fixed points in $G\Sp$.
+				\item Describe the fixed point functors for $C_{p^\infty}\Sp:=\lim_n C_{p^n}\Sp$ via forgetful maps.
+				\item Similarly for $\bbT\Sp_\calF$ and furthermore achieve this using cyclonic spectra.
+		\end{itemize}
+\end{goal}
+
+\subsection{Genuine $G$-Spectra}
+
+\begin{definition}
+		The $\infty$-category of genuine $G$-spectra is $G\Sp := \Fun^\oplus(\Aeff(\finset_G),\Sp)$. For $H\leq G$ and $X\in G\Sp$, the genuine $H$-fixed point spectrum of $X$ is defined as $X^H:=X(G/H)\simeq\MapSp(\Sigma^\infty_+ G/H, X)$.
+\end{definition}
+
+\begin{prop}
+		The $\infty$-category $G\Sp$ is stable with $t$-structure where $X\in G\Sp$ is connective if it is pointwise connective. In particular $G\Sp^\heartsuit$ is equivalent to the classical category of mackey functors. There is an adjunction 
+		$$\Sigma^\infty\dashv\Omega^\infty\colon G\Spc_*\leftrightarrows G\Sp$$
+		where $\Omega^\infty(E)=\Omega^\infty\circ E\circ j$ and $j\colon\Orb^\op_G\rightarrow\Aeff(\finset_G)$ is the obvious inclusion. For $I\in\finset_G$, the suspension spectra $\Sigma^\infty_+ I$ is self dual in $G\Sp$.
+\end{prop}
+
+\begin{remark}
+		In [NS] they define equivalences of $G$-spectra using geometrix fixed points. This is equivalent to equivalences detected by genuine fixed points.
+\end{remark}
+
+\subsubsection*{Todo}
+
+\begin{outline}
+		\1 Add in detail about $\Aeff$ and its self duality
+\end{outline}
+
+\subsection{Restriction, Induction, and the Wirthm\"uller Isomorphism}
+
+Let $H$ be a subgroup of $G$, we will construct an ambidextrous adjunction
+$$\res^G_H\colon G\Sp\leftrightarrows H\Sp\colon\ind^G_H.$$
+To construct the above adjunction, we define adjunctions at the following steps:
+\begin{itemize}
+		\item Finite $G$ sets $\finset_G$.
+		\item Span categories $\Aeff(\finset_G)$.
+		\item Spectral Mackey Functors $\Fun^\oplus(\Aeff(\finset_G),\Sp)$.
+\end{itemize}
+
+Let $\res^G_H\colon\finset_G\rightarrow\finset_H$ denote the forgetful functor. Then the left adjoint is denoted by $\ind^G_H\colon\finset_H\rightarrow\finset_G$ which sends a finite $H$-set $X$ to the $G$-set $G\times_H X:= (G\times X)/H$ where $H$ acts by $h(g,x)=(gh^{-1},hx)$. In particular, $\ind^G_H$ sends $H/K$ to $G/K$. Since both $\res^G_H$ and $\ind^G_H$ preserve pullbacks both extend to functors $\res^G_H\colon\Aeff(\finset_G)\rightarrow\Aeff(\finset_H)$ and $\ind^G_H\colon\Aeff(\finset_H)\rightarrow\Aeff(\finset_G)$. Furthermore they are still adjoints at this level, i.e. $\res^G_H\dashv\ind^G_H$.
+
+\begin{remark}
+		Adjointness is nontrivial and does not follow immediately from $\Aeff$ being functorial.
+\end{remark}
+
+In fact by self duality of $\Aeff(\finset_G)$, we have that $\ind^G_H\dashv\res^G_H$. Finally we define $\res^G_H\colon G\Sp\rightarrow H\Sp$ by precomposition with $\ind^G_H\colon\Aeff(\finset_H)\rightarrow\Aeff(\finset_G)$ and similarly for $\ind^G_H$.	
+
+\begin{remark}
+		Observe that for $X\in G\Sp$ and $K\leq H\leq G$, we have that
+		\begin{align*}
+				(\res^G_H X)^K &= (\res^G_H X)(H/K)\\
+							&= X(\ind^G_H(H/K))\\
+							&= X(G/K)\\
+							&= X^K.
+		\end{align*}
+		That is the genuine $K$-fixed points for $K\leq H$ do not change.
+\end{remark}
+
+\subsubsection*{Todo}
+\begin{outline}
+		\1 Why do $\ind,\res$ preserve pullbacks?
+		\1 Lol if deranged enough then explaning why adjoints at the level of $\Aeff$.
+\end{outline}
+
+\subsection{Homotopy Fixed Points}
+
+Recall that for a spectra with $G$-action $X\in\Sp^{BG}:=\Fun(BG,\Sp)$, the homotopy fixed points of $X$ is $X^{hG}:=\lim_{BG}X$. For a genuine $G$-spectra forgetting to the underlying spectra with $G$-action is encoded by the functor $u_G\colon G\Sp\rightarrow\Fun(BG,\Sp)$ given by restriction along $BG\hookrightarrow\Aeff(\finset_G)$. Then the homotopy $G$-fixed point functors are given by forgetting to $\Sp^{BG}$ then taking the usual homotopy fixed points. We can similarly define the homotopy $H$-fixed point functors by taking a further restriction to $\Sp^{BH}$ or equivalently by initially applying $\res^G_H$ to land in $H\Sp$.
+
+By a result of Saul Glasman we have an alternate way of defining the homotopy fixed points. Let $\finset_G^\free\subset\finset_G$ denote the full subcategory of finite free $G$-sets.
+
+\begin{theorem}
+		The functor $G\Sp^\free:=\Fun^\oplus(\Aeff(\finset_G^\free),\Sp)\rightarrow\Fun(BG,\Sp)$ given by precomposition with the inclusion induces an equivalence of $\infty$-categories.
+\end{theorem}
+
+\begin{remark}
+		Here the inclusion is given by sending $*\in BG$ to $G/e\in\Orb_G\subset\finset_G^\free\subset\Aeff(\finset_G^\free)$. In particular, $\Aeff(\finset_G^\free)$ is the free semiadditive $\infty$-category generated by $BG$.
+\end{remark}
+
+\begin{proof}
+		Can be proved via Lawvere theory, we refer to notes by Maxime Ramzi.
+\end{proof}
+
+On the other hand we may also consider the restriction map $u_G\colon G\Sp\rightarrow G\Sp^\free$ induced by the inclusion $\finset_G^\free\subset\finset_G$. It is not hard to see that composing $u_G$ with the equivalence from before is the same as directly restricting to $BG$. Define the Borel completion which we denote by $b_G$ as the right adjoint to $u_G$.
+
+\begin{remark}
+		Abusing notation and conflating $G\Sp^\free$ with $\Sp^{BG}$, we may define the homotopy $H$-fixed point functor as $X\mapsto (u_G X)^{hH}$. Equivalently we first restrict to $H$-spectra than apply the corresponding functor, i.e. $X\mapsto(u_H\res^G_H X)^{hH}$.
+\end{remark}
+
+\begin{theorem}
+		For $X\in G\Sp^\free$, there is an equivalence $X^{hH}\simeq(b_G X)^H$ for all $H\leq G$.
+\end{theorem}
+
+\begin{proof}
+		First suppose that this is true for $H=G$. As shown above both adjoints $u_G$ and $b_G$ commute with restrictions. Then 
+		$$(b_G X)^{hH} = (\res^G_H u_G b_G X)^{hH}\simeq(u_H b_H\res^G_H X)^{hH}\simeq(\res^G_H X)^{hH}\simeq(b_H\res^G_H X)^H\simeq(\res^G_H b_G X)^H\simeq(b_G X)^H.$$
+		Thus it remains to prove the case $H=G$.
+\end{proof}
+
+\begin{theorem}
+		The functor $b_G$ is fully faithful and the essential image consists of the full subcategory of $X\in G\Sp$ such that the natural map $X^H\rightarrow X^{hH}$ is an equivalence for all $H\leq G$ which we refer to as Borel-complete $G$-spectra.
+\end{theorem}
+
+\subsubsection*{Todo}
+
+\begin{outline}
+\1 Give proof for homotopy fixed points = genuine fixed points.
+\1 Replace the above remark with proof that restriction and adjoints commute.
+\1 Why is it true that $(u_H b_H\res^G_H X)^{hH}\simeq(\res^G_H X)^{hH}$?
+\end{outline}
+
+
+\subsection{Geometric Fixed Points}
+
+We now construct the geometrix fixed point functors. Let $\calF$ be a family of subgroups closed under conjugation and subgroups. Then define
 
 \[
 (E\calF)^K
@@ -115,12 +307,23 @@ We call $\Phi_!$ the geometric $H$-fixed point functor and denote it by $\Phi^H$
 		The geometric $H$-fixed point functors are symmetric monoidal.
 \end{remark}
 
-\begin{definition}
-		The homotopy fixed point functors are given by forgetting to $\Sp^{BG}$ then taking the usual homotopy $H$-fixed points.
-\end{definition}
+\subsection{Comparison of Fixed Points}
 
-\begin{theorem}
-		The functor $G\Sp\rightarrow\Sp^{BG}$ admits a fully faithful right adjoint $B_G\colon\Sp^{BG}\rightarrow G\Sp$. The essential image of $B_G$ are those $X\in G\Sp$ such that the natural map $X^H\rightarrow X^{hH}$ is an equivalence for all $H\subseteq G$.
-\end{theorem}
+\subsection{$G = C_{p^\infty}$ or $\bbT$}
+
+\subsubsection*{Todo}
+
+\begin{outline}
+\1 Specify a bit more about genuine fixed points
+	\2 In particular where the natural transformation $(-)^H\rightarrow(-)^{\Phi H}$ comes from.
+	\2 Also the composability of geometric fixed points, i.e. something like $\Phi^{H'/H}\circ \Phi^H\rightarrow\Phi^{H'}$ is an equivalence.
+	\2 Mention how the geometric fixed points form a localization and what the corresponding reflective subcategory is.
+\1 Do the same for homotopy fixed points
+	\2 In particular how there is NO DIRECT relation with geometric fixed points.
+\1 Write about the $C_{p^\infty}$ and $\bbT$ equivariant variants of the theory
+	\2 In particular what results hold "essentially" analogously.
+\1 Also specify how we can get borel $G$-spectra using spectral mackey functors.
+\end{outline}
+
 
 \end{document}
